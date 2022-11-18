@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">SQLite</string>
+    <string name="save">Save</string>
+</resources>
