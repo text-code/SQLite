@@ -1,6 +1,8 @@
 package ru.test.applications.sqlite
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.test.applications.sqlite.databinding.ActivityMainBinding
@@ -42,5 +44,37 @@ class MainActivity : AppCompatActivity() {
                 binding.container.addView(noteView)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+
+        viewModel.filterData.observe(this) { notes ->
+            notes.map { note ->
+                ActivityNoteBinding.inflate(
+                    layoutInflater, binding.container, false
+                ).apply {
+                    title.text = note.title
+                    content.text = note.content
+                }.root
+            }.forEach { noteView ->
+                binding.container.addView(noteView)
+            }
+        }
+
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(textSearch: CharSequence?, start: Int, count: Int, after: Int) {
+                binding.container.removeAllViews()
+            }
+
+            override fun onTextChanged(textSearch: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.onSearch(textSearch.toString())
+            }
+
+            override fun afterTextChanged(textSearch: Editable?) {
+            }
+        })
     }
 }

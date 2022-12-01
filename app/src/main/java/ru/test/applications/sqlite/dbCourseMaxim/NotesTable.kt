@@ -6,9 +6,9 @@ object NotesTable {
 
     val DDL = """
         CREATE TABLE $NAME (
-            ${Column.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-            ${Column.TITLE} TEXT NOT NULL,
-            ${Column.CONTENT} TEXT NOT NULL
+            ${Column.ID.columnName} INTEGER PRIMARY KEY AUTOINCREMENT,
+            ${Column.TITLE.columnName} TEXT NOT NULL,
+            ${Column.CONTENT.columnName} TEXT NOT NULL
         );
     """.trimIndent()
 
@@ -17,8 +17,8 @@ object NotesTable {
     }.toTypedArray()
 
     enum class Column(val columnName: String) {
-        ID("ID"),
-        TITLE("TITLE"),
-        CONTENT("CONTENT")
+        ID("id"),
+        TITLE("title"),
+        CONTENT("content")
     }
 }
