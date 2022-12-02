@@ -7,12 +7,12 @@ import ru.test.applications.sqlite.dto.Note
 
 class SQLiteRepository(
     private val dao: NoteDao
-): NoteRepository {
+) : NoteRepository {
 
     private val notes
-    get() = checkNotNull(data.value) {
-        "Data value should not be null"
-    }
+        get() = checkNotNull(data.value) {
+            "Data value should not be null"
+        }
 
     override val data = MutableLiveData(dao.getAll())
 

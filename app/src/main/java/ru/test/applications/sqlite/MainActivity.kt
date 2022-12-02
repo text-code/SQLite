@@ -44,12 +44,6 @@ class MainActivity : AppCompatActivity() {
                 binding.container.addView(noteView)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        val binding = ActivityMainBinding.inflate(layoutInflater)
 
         viewModel.filterData.observe(this) { notes ->
             notes.map { note ->
@@ -65,11 +59,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.search.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(textSearch: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(
+                textSearch: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
                 binding.container.removeAllViews()
             }
 
-            override fun onTextChanged(textSearch: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                textSearch: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 viewModel.onSearch(textSearch.toString())
             }
 

@@ -10,7 +10,7 @@ import ru.test.applications.sqlite.data.NoteRepository
 import ru.test.applications.sqlite.databinding.ActivityNewNoteBinding
 import ru.test.applications.sqlite.dto.Note
 
-class NewNoteActivity: AppCompatActivity(){
+class NewNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityNewNoteBinding.inflate(layoutInflater)
